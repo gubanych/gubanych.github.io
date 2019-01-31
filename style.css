@@ -1,0 +1,94 @@
+html, body {
+    height: 100%;
+}
+.wrapper {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.widget {
+    display: flex;
+    flex-direction: column;
+    width: 25rem;
+    min-width: 360px;
+    height: 18rem;
+    background: palevioletred;
+    justify-content: space-between;
+}
+.widgetHeader {
+    display: flex;
+    margin-bottom: 1.5rem;
+}
+.widgetHeader>div {
+    display: flex;
+    height: 2rem;
+    flex:1;
+    align-items: center;
+    justify-content: center;
+    background: pink;
+    cursor: pointer;
+    user-select: none;
+}
+.widgetHeader .active {
+    background: transparent;
+    cursor: auto;
+}
+.widgetBody {
+    width: 100%;
+    flex: 8;
+    position: relative;
+    padding: 0 1rem;
+    box-sizing: border-box;
+   
+}
+.widgetBody>div{
+   
+    
+    width: 100%;
+}
+
+.currencyBlock {
+    display: flex;
+    margin: 0.7rem 0;
+    justify-content: space-between;
+    align-items: center;
+    -background: url('by.svg');
+}
+.currencyBlock p {
+    display: flex;
+    width: 100%;
+    padding-right: 1rem;
+    justify-content: space-between;
+}
+.currencyBlock input {
+    width: 5rem;
+}
+.currencyBlock img, .dateBlock img {
+    width: 2rem;
+    height: 100%;
+    margin-right: 1rem;
+}
+.dateBlock {
+    
+}
+.converterFooter {
+    margin-bottom: 0.5rem;
+    font-size: 0.8rem;
+    height: 1rem;
+    text-align: center;
+}
+.date {
+    text-align: center;
+}
+.date p {
+   margin: 1rem 0;
+   text-align: center;
+}
+.hidden{
+    display: none;
+}
+.red {
+    border: 2px solid red;
+}

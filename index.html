@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Converter</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="widget">
+            <div class="widgetHeader">
+                <div data-ref="converter" class="active">Конвертер</div>
+                <div data-ref="rates">Курсы</div>
+                <div data-ref="date">Дата</div>
+            </div>
+            <div class="widgetBody">
+                <div class="converter">
+                    <div class="currencyBlock">
+                        <img src="by.svg">
+                        <p class="currencyTitle">
+                            Белорусский рубль
+                            <span>BYR</span>
+                        </p>
+                        <input type="text" name="byr" id="BYR">
+                    </div>
+                    <div class="currencyBlock">
+                        <img src="us.svg">
+                        <p class="currencyTitle">
+                            Доллар США
+                            <span>USD</span>
+                        </p>
+                        <input type="text" name="usd" id="USD">
+                    </div>
+                    <div class="currencyBlock">
+                        <img src="eu.svg">
+                        <p class="currencyTitle">
+                            Евро
+                            <span>EUR</span>
+                        </p>
+                        <input type="text" name="eur" id="EUR">
+                    </div>
+                    <div class="currencyBlock">
+                        <img src="ru.svg">
+                        <p class="currencyTitle">
+                            Российский рубль
+                            <span>RUB</span>
+                        </p>
+                        <input type="text" name="rub" id="RUB">
+                    </div>
+                    <div class="currencyBlock">
+                        <img src="pl.svg">
+                        <p class="currencyTitle">
+                            Польский злотый
+                            <span>PLN</span>
+                        </p>
+                        <input type="text" name="pln" id="PLN">
+                    </div>
+                    <div class="currencyBlock">
+                        <img src="ua.svg">
+                        <p class="currencyTitle">
+                            Украинская гривна
+                            <span>UAH</span>
+                        </p>
+                        <input type="text" name="uah" id="UAH">
+                    </div>
+                    <div class="converterFooter">
+                
+                    </div>
+                </div>
+                <div class="rates hidden">
+                    <div class="currencyBlock">
+                        <img src="by.svg">
+                        <p class="dateBlock" data-type="BYR">
+                            <span></span>
+                            <span class="prevDate"></span>
+                            <span class="currDate"></span>
+                        </p>
+                    </div>
+                    <div class="currencyBlock">
+                        <img src="us.svg">
+                        <p class="dateBlock" data-type="USD">
+                            <span>1</span>
+                            <span class="prevDate"></span>
+                            <span class="currDate"></span>
+                        </p>
+                    </div>
+                    <div class="currencyBlock">
+                        <img src="eu.svg">
+                        <p class="dateBlock" data-type="EUR">
+                            <span>1</span>
+                            <span class="prevDate"></span>
+                            <span class="currDate"></span>
+                        </p>
+                    </div>
+                    <div class="currencyBlock">
+                        <img src="ru.svg">
+                        <p class="dateBlock" data-type="RUB">
+                            <span>100</span>
+                            <span class="prevDate"></span>
+                            <span class="currDate"></span>
+                        </p>
+                    </div>
+                    <div class="currencyBlock">
+                        <img src="pl.svg">
+                        <p class="dateBlock" data-type="PLN">
+                            <span>10</span>
+                            <span class="prevDate"></span>
+                            <span class="currDate"></span>
+                        </p>
+                    </div>
+                    <div class="currencyBlock">
+                        <img src="ua.svg">
+                        <p class="dateBlock" data-type="UAH">
+                            <span>100</span>
+                            <span class="prevDate"></span>
+                            <span class="currDate"></span>
+                        </p>
+                    </div>
+                    <div class="converterFooter">
+                
+                    </div>
+                </div>
+                <div class="date hidden">
+                    <p>Вы можете выбрать дату<br>с <span></span> по сегодняшнюю</p>
+                    <input type="date" name="date" id="date">
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
