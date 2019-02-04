@@ -20,7 +20,6 @@ document.querySelector('.date p span').textContent = convertDate(startDate);
 document.querySelector('.converterFooter').textContent = convertDate(today);
 document.querySelector('.dateBlock .currDate').textContent = convertDate(today);
 let prevDay = getPrevDate(date);
-console.log(prevDay);
 
 function getPrevDate(date) {
     let temp = new Date(date);
@@ -37,7 +36,7 @@ function convertDate(date) {
 
 function getRates(date) {
     
-    fetch(`https://www.nbrb.by/API/ExRates/Rates?onDate=${date}&Periodicity=0`)
+    fetch(`http://www.nbrb.by/API/ExRates/Rates?onDate=${date}&Periodicity=0`)
     .then(response => response.json())
     .then(response => {
         
@@ -62,6 +61,11 @@ function setRates(obj) {
         let temp = elem.getAttribute('data-type');
         if (obj === 'rates') elem.children[2].textContent = rates[temp];
         if (obj === 'ratesPrev') elem.children[1].textContent = ratesPrev[temp];
+    switch (true) {
+        case  rates[temp] > ratesPrev[temp]: elem.children[3].classList= 'rel up'; break;
+        case  rates[temp] < ratesPrev[temp]: elem.children[3].classList='rel down'; break;
+        default: elem.children[3].classList= 'rel equal'; break;
+    }
     }
 });
 }
@@ -71,7 +75,7 @@ getRates(today);
 function getPrevRates(date) {
         
     
-    fetch(`https://www.nbrb.by/API/ExRates/Rates?onDate=${date}&Periodicity=0`)
+    fetch(`http://www.nbrb.by/API/ExRates/Rates?onDate=${date}&Periodicity=0`)
     .then(response => response.json())
     .then(response => {
         
@@ -85,14 +89,25 @@ function getPrevRates(date) {
         setRates('ratesPrev');
     })
     document.querySelector('.dateBlock .prevDate').textContent = convertDate(date);
+
 }
 
 getPrevRates(prevDay);
 
 const converterBlock = document.querySelector('.converter');
+let eventTarget;
+let eventTargetValue;
 converterBlock.addEventListener('input', function(event) {
-    console.log('conv');
-   updateResults(event.target, event.target.value);
+    eventTarget = event.target;
+    eventTargetValue = event.target.value;
+    let amount = event.target.value.replace(',','.');
+   if (parseFloat(amount) == amount) {
+    updateResults(event.target, amount);
+    event.target.classList.remove('red');
+   } else {
+        clearResults(event.target);
+   }
+   if(amount == 0) event.target.classList.remove('red');
 })
 
 converterBlock.addEventListener('dblclick', function(event) {
@@ -107,13 +122,20 @@ function updateResults(target, value) {
     inputs.forEach(elem => {
         if (elem != target) {
             let newValue = value * (currencies[target.id] / currencies[elem.id]);
-            newValue = roundToTwo(newValue);
-            elem.value = newValue ? newValue : '';
+            
             elem.value = roundToTwo(newValue);
         }
     })
 }
 
+function clearResults(target) {console.log('clear');
+    inputs.forEach(elem => {
+        if (elem != target) {
+            elem.value = '';
+            target.classList.add('red');
+        }
+    })
+}
 function roundToTwo(num) {    
     return +(Math.round(num + "e+2")  + "e-2");
 }
@@ -132,28 +154,29 @@ datePicker.addEventListener('input', function(event){
 const header = document.querySelector('.widgetHeader');
 header.addEventListener('click', function(event) {
    
-    console.log('head');
     const ref = event.target.getAttribute('data-ref');
     if (ref !== 'date') {
         if (datePicker.value >= startDate && datePicker.value <= today) {
             let temp = getPrevDate(datePicker.value);
             getRates(datePicker.value);
             getPrevRates(temp);
+            if(eventTarget && eventTargetValue) updateResults(eventTarget, eventTargetValue);
         }
         else {
             datePicker.value = today;
             datePicker.classList.remove('red');
         }
-        let temp = datePicker.value.split('-');
-        document.querySelector('.converterFooter').textContent = `${temp[2]}.${temp[1]}.${temp[0]}`;
+       
+        document.querySelector('.converterFooter').textContent = convertDate(datePicker.value);
         
     }
-    //if (ref === 'rates') {
-       
-    // }
+
+    if (ref === 'rates') {
+
+    }
+    
     document.querySelectorAll('.widgetBody>div').forEach(elem => elem.classList.add('hidden'));
     document.querySelector(`.${ref}`).classList.remove('hidden');
     header.querySelectorAll('div').forEach(elem => elem.classList.remove('active'));
     event.target.classList.add('active');
 })
-console.log(inputs);
