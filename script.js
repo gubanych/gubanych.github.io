@@ -36,7 +36,7 @@ function convertDate(date) {
 
 function getRates(date) {
     
-    fetch(`http://www.nbrb.by/API/ExRates/Rates?onDate=${date}&Periodicity=0`)
+    fetch(`https://www.nbrb.by/API/ExRates/Rates?onDate=${date}&Periodicity=0`)
     .then(response => response.json())
     .then(response => {
         
@@ -75,7 +75,7 @@ getRates(today);
 function getPrevRates(date) {
         
     
-    fetch(`http://www.nbrb.by/API/ExRates/Rates?onDate=${date}&Periodicity=0`)
+    fetch(`https://www.nbrb.by/API/ExRates/Rates?onDate=${date}&Periodicity=0`)
     .then(response => response.json())
     .then(response => {
         
