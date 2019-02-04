@@ -41,11 +41,8 @@ html, body {
     position: relative;
     padding: 0 1rem;
     box-sizing: border-box;
-   
 }
 .widgetBody>div{
-   
-    
     width: 100%;
 }
 
@@ -61,6 +58,7 @@ html, body {
     width: 100%;
     padding-right: 1rem;
     justify-content: space-between;
+    align-items: center;
 }
 .currencyBlock input {
     width: 5rem;
@@ -70,8 +68,38 @@ html, body {
     height: 100%;
     margin-right: 1rem;
 }
-.dateBlock {
-    
+.dateBlock img {
+    width: 1rem;
+    height: 1rem;
+    margin: 0 auto;
+}
+.dateBlock span{
+    flex: 2;
+    text-align: center;
+    background-repeat: no-repeat;
+}
+.dateBlock span:first-child{
+    flex: 1;
+    text-align: start;
+}
+.dateBlock span:last-child{
+    display: flex;
+    flex: 1;
+    width: 1rem;
+    height: 1rem;
+}
+.rel {
+    background-size: contain;
+    background-position: center;
+}
+.rel.up {
+    background-image: url('arrow-up.svg');
+}
+.rel.down {
+    background-image: url('arrow-down.svg');
+}
+.rel.equal {
+    background-image: url('equal.svg');
 }
 .converterFooter {
     margin-bottom: 0.5rem;
@@ -90,5 +118,7 @@ html, body {
     display: none;
 }
 .red {
+    outline: none;
     border: 2px solid red;
+    color: red;
 }
