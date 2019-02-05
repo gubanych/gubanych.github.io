@@ -64,8 +64,8 @@ html, body {
 }
 .currencyBlock img, .dateBlock img {
     display: block;
-    width: 2rem;
-    height: 1.5rem;
+    width: 24px;
+    height: 32px;
     margin-right: 1rem;
 }
 .dateBlock img {
