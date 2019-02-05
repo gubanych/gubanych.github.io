@@ -156,7 +156,10 @@ header.addEventListener('click', function(event) {
             datePicker.value = today;
             datePicker.classList.remove('red');
         }
-       
+       if(eventTarget.classList.contains('red')) {
+            inputs.forEach(elem => elem.value = '');
+            eventTarget.classList.remove('red');
+        }
         document.querySelector('.converterFooter').textContent = convertDate(datePicker.value);
     }
     
