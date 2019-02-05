@@ -89,7 +89,7 @@ function getPrevRates(date) {
 getPrevRates(prevDay);
 
 const converterBlock = document.querySelector('.converter');
-let eventTarget;
+let eventTarget = document.querySelector('.currencyBlock input');
 let eventTargetValue;
 converterBlock.addEventListener('input', function(event) {
     eventTarget = event.target;
