@@ -20,7 +20,7 @@ document.querySelector('.date p span').textContent = convertDate(startDate);
 document.querySelector('.converterFooter').textContent = convertDate(today);
 document.querySelector('.dateBlock .currDate').textContent = convertDate(today);
 let prevDay = getPrevDate(date);
-
+document.querySelectorAll('img').forEach(elem => elem.classList.remove('hidden'));
 function getPrevDate(date) {
     let temp = new Date(date);
     temp.setDate(temp.getDate() - 1);
