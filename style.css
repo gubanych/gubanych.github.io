@@ -63,6 +63,7 @@ html, body {
     width: 5rem;
 }
 .currencyBlock img, .dateBlock img {
+    display: block;
     width: 2rem;
     height: 1.5rem;
     margin-right: 1rem;
