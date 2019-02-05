@@ -36,7 +36,7 @@ function convertDate(date) {
 
 function getRates(date) {
     
-    fetch(`https://www.nbrb.by/API/ExRates/Rates?onDate=${date}&Periodicity=0`)
+    fetch(`http://www.nbrb.by/API/ExRates/Rates?onDate=${date}&Periodicity=0`)
     .then(response => response.json())
     .then(response => {
         
@@ -47,10 +47,7 @@ function getRates(date) {
             }
         });
 
-        console.log('текущий',response);
-        console.log('текущие', rates);
-        setRates('rates')
-        
+        setRates('rates');   
     })
     document.querySelector('.dateBlock .currDate').textContent = convertDate(date);
 }
@@ -74,8 +71,7 @@ getRates(today);
 
 function getPrevRates(date) {
         
-    
-    fetch(`https://www.nbrb.by/API/ExRates/Rates?onDate=${date}&Periodicity=0`)
+    fetch(`http://www.nbrb.by/API/ExRates/Rates?onDate=${date}&Periodicity=0`)
     .then(response => response.json())
     .then(response => {
         
@@ -84,12 +80,10 @@ function getPrevRates(date) {
                 ratesPrev[elem.Cur_Abbreviation] = elem.Cur_OfficialRate;
             }
         });
-        console.log('прошлые', ratesPrev);
-        console.log('прошлый',response);
+        
         setRates('ratesPrev');
     })
     document.querySelector('.dateBlock .prevDate').textContent = convertDate(date);
-
 }
 
 getPrevRates(prevDay);
@@ -111,7 +105,6 @@ converterBlock.addEventListener('input', function(event) {
 })
 
 converterBlock.addEventListener('dblclick', function(event) {
-    console.log('nen');
     if (event.target.tagName === 'INPUT') event.target.value = '';
  })
 
@@ -121,14 +114,13 @@ converterBlock.addEventListener('dblclick', function(event) {
 function updateResults(target, value) {
     inputs.forEach(elem => {
         if (elem != target) {
-            let newValue = value * (currencies[target.id] / currencies[elem.id]);
-            
+            let newValue = value * (currencies[target.id] / currencies[elem.id]); 
             elem.value = roundToTwo(newValue);
         }
     })
 }
 
-function clearResults(target) {console.log('clear');
+function clearResults(target) {
     inputs.forEach(elem => {
         if (elem != target) {
             elem.value = '';
@@ -147,8 +139,6 @@ datePicker.addEventListener('input', function(event){
     } else {
         datePicker.classList.remove('red');
     }
-        
-    
 })
 
 const header = document.querySelector('.widgetHeader');
@@ -168,11 +158,6 @@ header.addEventListener('click', function(event) {
         }
        
         document.querySelector('.converterFooter').textContent = convertDate(datePicker.value);
-        
-    }
-
-    if (ref === 'rates') {
-
     }
     
     document.querySelectorAll('.widgetBody>div').forEach(elem => elem.classList.add('hidden'));
