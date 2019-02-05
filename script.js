@@ -21,6 +21,7 @@ document.querySelector('.converterFooter').textContent = convertDate(today);
 document.querySelector('.dateBlock .currDate').textContent = convertDate(today);
 let prevDay = getPrevDate(date);
 document.querySelectorAll('img').forEach(elem => elem.classList.remove('hidden'));
+
 function getPrevDate(date) {
     let temp = new Date(date);
     temp.setDate(temp.getDate() - 1);
@@ -36,7 +37,7 @@ function convertDate(date) {
 
 function getRates(date) {
     
-    fetch(`https://www.nbrb.by/API/ExRates/Rates?onDate=${date}&Periodicity=0`)
+    fetch(`http://www.nbrb.by/API/ExRates/Rates?onDate=${date}&Periodicity=0`)
     .then(response => response.json())
     .then(response => {
         
@@ -47,7 +48,7 @@ function getRates(date) {
             }
         });
 
-        setRates('rates');   
+        setRates('rates')
     })
     document.querySelector('.dateBlock .currDate').textContent = convertDate(date);
 }
@@ -71,7 +72,7 @@ getRates(today);
 
 function getPrevRates(date) {
         
-    fetch(`https://www.nbrb.by/API/ExRates/Rates?onDate=${date}&Periodicity=0`)
+    fetch(`http://www.nbrb.by/API/ExRates/Rates?onDate=${date}&Periodicity=0`)
     .then(response => response.json())
     .then(response => {
         
@@ -84,6 +85,7 @@ function getPrevRates(date) {
         setRates('ratesPrev');
     })
     document.querySelector('.dateBlock .prevDate').textContent = convertDate(date);
+
 }
 
 getPrevRates(prevDay);
@@ -114,7 +116,7 @@ converterBlock.addEventListener('dblclick', function(event) {
 function updateResults(target, value) {
     inputs.forEach(elem => {
         if (elem != target) {
-            let newValue = value * (currencies[target.id] / currencies[elem.id]); 
+            let newValue = value * (currencies[target.id] / currencies[elem.id]);
             elem.value = roundToTwo(newValue);
         }
     })
@@ -139,6 +141,7 @@ datePicker.addEventListener('input', function(event){
     } else {
         datePicker.classList.remove('red');
     }
+        
 })
 
 const header = document.querySelector('.widgetHeader');
@@ -146,7 +149,9 @@ header.addEventListener('click', function(event) {
    
     const ref = event.target.getAttribute('data-ref');
     if (ref !== 'date') {
+        
         if (datePicker.value >= startDate && datePicker.value <= today) {
+            
             let temp = getPrevDate(datePicker.value);
             getRates(datePicker.value);
             getPrevRates(temp);
@@ -156,13 +161,14 @@ header.addEventListener('click', function(event) {
             datePicker.value = today;
             datePicker.classList.remove('red');
         }
-       if(eventTarget.classList.contains('red')) {
+        if(eventTarget.classList.contains('red')) {
             inputs.forEach(elem => elem.value = '');
             eventTarget.classList.remove('red');
+            eventTargetValue = 0;
         }
         document.querySelector('.converterFooter').textContent = convertDate(datePicker.value);
     }
-    
+
     document.querySelectorAll('.widgetBody>div').forEach(elem => elem.classList.add('hidden'));
     document.querySelector(`.${ref}`).classList.remove('hidden');
     header.querySelectorAll('div').forEach(elem => elem.classList.remove('active'));
