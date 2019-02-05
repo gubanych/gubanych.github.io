@@ -49,9 +49,8 @@ html, body {
 .currencyBlock {
     display: flex;
     margin: 0.7rem 0;
-    height: 1.5rem;
-    -justify-content: space-between;
-    -align-items: center;
+    justify-content: space-between;
+    align-items: center;
 }
 .currencyBlock p {
     display: flex;
@@ -64,9 +63,8 @@ html, body {
     width: 5rem;
 }
 .currencyBlock img, .dateBlock img {
-    display: block;
-    width: 32px;
-    height: 24px;
+    width: 2rem;
+    height: 1.5rem;
     margin-right: 1rem;
 }
 .dateBlock img {
@@ -116,7 +114,7 @@ html, body {
    text-align: center;
 }
 .hidden{
-    display: none !important;
+    display: none;
 }
 .red {
     outline: none;
